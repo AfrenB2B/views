@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/fa0bcfb368.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #topnav{
+            box-shadow: 0px 3px 5px rgba(175, 174, 174, 0.151);
+            padding-top: 0.5%;
+            /* padding-bottom: 0.5%; */
+            padding-left: 1%;
+            padding-right: 1%;
+            /* margin-bottom: 2%; */
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            /* position: relative; */
+        }
+        #navicon{
+            display: none;
+            position: absolute;
+            left: 95%;
+        }
+        #search{
+            display: none;
+            position: absolute;
+            left: 90%;
+        }
+        ul{
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* height: 80px; */
+            color: black;
+            padding-top: 0.5%;
+            padding-bottom: 0.5%;
+            /* padding-left: 2%; */
+            /* padding-right: 2%; */
+            /* position: relative; */
+        }
+        li{
+            float: left;
+            color: black;
+        }
+        #logo{
+            padding-top: 0;
+        }
+        span{
+            font-size: xx-large;
+            margin-top: 0;
+        }
+
+        li a, .dropbtn{
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* li a:hover, .dropdown:hover .dropbtn {
+            background-color: red;
+        } */
+
+        li.dropdown{
+            display: inline-block;
+        }
+
+        .dropdown-content{
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            max-width: 500px;
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+            /* z-index: 1; */
+        }
+        .dropdown-content-navicon{
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 210px;
+            max-width: 500px;
+            box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.2);
+        } 
+        .dropdown-content-navicon a{
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        #cancel-nav{
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        #responsivedrop-outter{
+            display: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: #0000007a;
+            z-index: 100;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+
+        #responsive-drop{
+            height: 100%;
+            padding: 0 1%;
+            right: 0;
+            background-color: #015b7e;
+            color: white;
+            box-sizing: border-box;
+        }
+        #resp-drp-top{
+            padding: 0.5% 0% 20px 0%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #resp-logo{
+            visibility: hidden;
+        }
+        #responsive-drop .dropbtn{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* box-shadow: 0 2px 0 rgba(116, 114, 114, 0.171); */
+            height: 30px;
+        }
+        #responsive-drop .dropdown-content2{
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.459);
+        }
+        #responsive-drop .drp-opt{
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.459);
+            height: 30px;
+        }
+        #responsive-drop .dropdown1{
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.459);
+        }
+        .drp-navbut{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .drp-navbut button{
+            width: 100%;
+            background-color: #015b7e;
+            color: white;
+            border: solid 1px white;
+            border-radius: 5px;
+            height: 40px;
+        }
+        .drp-navbut button:hover{
+            border: none;
+            background-color: white;
+            color: #015b7e;
+        }
+        #navbut-drpdiv{
+            margin-top: 50px;
+        }
+        .dropdown-content a{
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            /* z-index: 1; */
+        }
+
+        .dropdown-content a:hover{
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content{
+            display: block;
+        }
+        .search-bar{
+            width: 20%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 30px;
+            position: absolute;
+            left: 60%;
+            top: 23px;
+            font-size: 12px;
+            background-color: #F7FAFE;
+            color: gray;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(155, 154, 154, 0.705);
+            border-radius: 10px;
+        }
+        #start-navbut{
+            width: 10%;
+            height: 30px;
+            position: absolute;
+            /* left: 60%; */
+            right: 3%;
+            top: 23px;
+            background-color: white;
+            color: #015b7e;
+            border: solid 1px #015b7e;
+            border-radius: 5px;
+        }
+        #start-navbut:hover{
+            border: none;
+            background-color: #015b7e;
+            color: white;
+        }
+        #si-innav{
+            width: 7%;
+            height: 30px;
+            position: absolute;
+            left: 79%;
+            top: 23px;
+            background-color: white;
+            color: #015b7e;
+            border: solid 1px #015b7e;
+            border-radius: 5px;
+        }
+        #si-innav:hover{
+            border: none;
+            background-color: #015b7e;
+            color: white;
+        }
+        input{
+            width: 80%;
+            border: none;
+            background-color: #F7FAFE;
+        }
+        input:focus{
+            outline: none;
+        }
+        .bell-icon{
+            position: absolute;
+            left: 88%;
+            font-size: 18px;
+        }
+        #navprofile{
+            float: right;
+            margin-right: 3%;
+            width: 4%;
+            padding-top: 0;
+        }
+        #navprofile img{
+            width: 100%;
+        }
+        #navprofile-onlinetag{
+            position: absolute;
+            height: 10%;
+            width: 0.6%;
+            background-color: #34A853;
+            border-radius: 20px;
+            left: 95.7%;
+            z-index: 1;
+            top: 48px;
+        }
+        #drp-navprofile{
+            margin-left: 5%;
+            width: 20%;
+            padding-top: 0;
+        }
+        #drp-navprofile img{
+            width: 100%;
+        }
+        #drpprofile-onlinetag{
+            position: absolute;
+            height: 7px;
+            width: 3%;
+            background-color: #34A853;
+            border-radius: 20px;
+            left: 22.5%;
+            z-index: 1;
+            top: 40px;
+        }
+        #searchbar-drop{
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.384);
+            margin-top: 6%;
+            display: none;
+            z-index: -1;
+        }
+        #searchdrop{
+            display: flex;
+            width: 80%;
+            margin-left: 10%;
+            background-color: white;
+            align-items: center;
+            justify-content: space-around;
+            height: 30px;
+            font-size: 12px;
+            background-color: #F7FAFE;
+            color: gray;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(155, 154, 154, 0.705);
+            border-radius: 10px;
+            margin-top: 3%;
+        }
+        .wrapper{
+            width: 100%;
+            background-color: white;
+            text-align: center;
+        }
+        .wrapper h1{
+            color: #015B7E;
+            margin-top: 50px;
+        }
+        .outer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+        }
+        .card{
+            /* margin-top: 150px; */
+            background: #DCF5FF;
+            width: 430px;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+            animation: animate 15s linear infinite;
+            animation-delay: calc(3s * var(--delay));
+            text-align: start;
+        }
+        .details p{
+            margin: 0;
+        }
+        .outer:hover .card{
+            animation-play-state: paused;
+        }
+        .wrapper .card:last-child{
+            animation-delay: calc(-3s * var(--delay));
+        }
+        @keyframes animate {
+            0%, 20%{
+                opacity: 0;
+                transform: translateY(30%) scale(0.5);
+            }
+            /* 5%, 20%{
+                opacity: 0;
+                transform: translateY(100%) scale(0.7);
+            } */
+            25%, 40%{
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0%) scale(1);
+            }
+            45%, 100%{
+                opacity: 0;
+                transform: translateY(-30%) scale(0.7);
+            }
+            /* 65%, 100%{
+                opacity: 0;
+                transform: translateY(-100%) scale(0.5);
+            } */
+        }
+        .inner-bottom{
+            display: flex;
+            margin-top: 20px;
+        }
+        .user-prof{
+            display: flex;
+            width: 70%;
+        }
+        .prof-pic{
+            width: 20%;
+            margin-right: 10px;
+        }
+        .prof-pic img{
+            width: 100%;
+            height: 100%;
+        }
+        .checked{
+            color: orange;
+            font-size: 10px;
+        }
+        .client small{
+            color: #015B7E;
+        }
+        #foot-logo{
+            font-size: 50px;
+            font-family: poppins;
+            /* position: absolute; */
+        }
+        #footer{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            background-color: #1e1e1e;
+            color: #f7fafe;
+            padding-left: 5%;
+            padding-right: 5%;
+            box-sizing: border-box;
+        }
+        #footer a{
+            text-decoration: none;
+            color: #f7fafe;
+        }
+        .footercontent{
+            display: flex;
+            justify-content: space-around;
+            width: 50%;
+        }
+        #copy{
+            background-color: #1e1e1e;
+            width: 100%;
+            text-align: center;
+            color: #f7fafe;
+            font-size: 12px;
+            padding-top: 50px;
+        }
+        @media (max-width: 1264px){
+            #navprofile{
+                margin-right: 3%;
+                width: 5%;
+            }
+        }
+        @media (max-width: 1192px){
+            #navprofile{
+                margin-right: 3%;
+                width: 5%;
+            }
+        }
+        @media (max-width: 1110px){
+            #navprofile{
+                width: 5%;
+            }
+            #navprofile-onlinetag{
+                left: 95.6%;
+                top: 43px;
+            }
+            
+            .bell-icon{
+                left: 86%;
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 1042px){
+            #navprofile-onlinetag{
+                left: 95.6%;
+                top: 43px;
+            }
+            p{
+                font-size: 14px;
+            }
+            a{
+                font-size: 14px;
+            }
+            h3{
+                font-size: 17px;
+            }
+            .search-bar{
+                width: 20%;
+                height: 30px;
+                left: 60%;
+                top: 18px;
+            }
+        }
+        @media (max-width: 942px){
+            #navprofile-onlinetag{
+                height: 10%;
+                width: 0.8%;
+                left: 95.3%;
+                top: 42px;
+            }
+            .search-bar{
+                width: 20%;
+                height: 30px;
+                left: 65%;
+                top: 18px;
+            }
+        }
+        @media (max-width: 919px){
+            #footer{
+                padding-left: 3%;
+                padding-right: 3%;
+            }
+        }
+        @media (max-width: 864px){
+
+            #start-navbut {
+                min-width: 90px;
+            }
+            #si-innav {
+                margin-left: -5px;
+            }
+            #navprofile{
+                margin-right: 3%;
+                width: 5.7%;
+            }
+            #logo span{
+                font-size: 25px;
+            }
+        }
+        @media (max-width: 810px){
+            .search-bar{
+                display: none;
+            }
+            #navprofile{
+                display: none;
+            }
+            #navprofile-onlinetag{
+                display: none;
+            }
+            .bell-icon{
+                display: none;
+            }
+            #navicon{
+                display: block;
+            }
+            #search{
+                display: block;
+            }
+            #logo{
+                padding-bottom: 0;
+                position: absolute;
+            }
+            #navcontent{
+                display: none;
+            }
+            #topnav{
+                padding-left: 0;
+                padding-right: 0;
+            }
+            ul{
+                height: 40px;
+            }
+            #navicon{
+                left: 93%;
+            }
+            #search{
+                left: 88%;
+            }
+            .dropdown-content2{
+                display: none;
+                position: unset;
+                background-color: #015b7e;
+                box-shadow: none;
+                padding-left: 5%;
+            }
+            .dropdown-content2 a{
+                color: white;
+            }
+        }
+        @media (max-width: 760px){
+            #footer{
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+        }
+        @media (max-width: 738px){
+            #footer{
+                display: grid;
+            }
+            .footercontent{
+                width: 100%;
+            }
+            #footer{
+                font-size: small;
+            }
+            #foot-logo{
+                font-size: 40px;
+            }
+        }
+        @media (max-width: 638px){
+            #searchbar-drop{
+                margin-top: 8%;
+            }
+            #navicon{
+                left: 90%;
+            }
+            #search{
+                left: 80%;
+            }
+        }
+        @media (max-width: 604px){
+            .card{
+                width: 400px;
+                padding: 10px;
+            }
+            .prof-pic{
+                width: 30%;
+                margin-right: 5px;
+            }
+            .wrapper h1{
+                font-size: 25px;
+            }
+            .wrapper p{
+                font-size: 13px;
+            }
+        }
+        @media (max-width: 514px){
+            .card{
+                width: 300px;
+                padding: 10px;
+            }
+            .prof-pic{
+                width: 30%;
+                margin-right: 5px;
+            }
+            .wrapper h1{
+                font-size: 20px;
+            }
+            .wrapper p{
+                font-size: 13px;
+            }
+            .wrapper small{
+                font-size: 10px;
+            }
+        }
+        @media (max-width: 498px){
+            #searchbar-drop{
+                margin-top: 9%;
+            }
+        }
+        @media (max-width: 432px){
+            .footercontent{
+                display: grid;
+            }
+            .footerinnercontent{
+                display: none;
+            }
+            .footerinnercontent p{
+                color: rgb(155, 152, 152);
+            }
+            #footer{
+                text-align: center;
+            }
+            .footerhead h3:hover{
+                cursor: pointer;
+            }
+            #logo{
+                font-size: 30px;
+            }
+            /* .footerhead:hover .footerinnercontent{
+                display: block;
+            } */
+        }
+        @media (max-width: 424px){
+            #responsive-drop{
+                width: 100%;
+                padding: 0 5%;
+            }
+            #cancel-nav{
+                margin-right: 0;
+            }
+            #resp-logo{
+                visibility: visible;
+            }
+            #searchbar-drop{
+                margin-top: 10%;
+            }
+            #drpprofile-onlinetag{
+                height: 5px;
+                width: 2.5%;
+                left: 22.4%;
+                top: 39px;
+            }
+        }
+        @media (max-width: 386px){
+            #navicon{
+                left: 85%;
+            }
+            #search{
+                left: 75%;
+            }
+            #searchbar-drop{
+                margin-top: 11%;
+            }
+        }
+        @media (max-width: 348px){
+            #searchbar-drop{
+                margin-top: 12%;
+            }
+        }
+        @media (max-width: 304px){
+            #searchbar-drop{
+                margin-top: 14%;
+            }
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+        $("#icon").click(function(){
+            $("#searchbar-drop").fadeOut("fast");
+            if($("#responsivedrop-outter").fadeIn("")){
+            }
+        });
+        $("#cancel-nav").click(function(){
+            $("#responsivedrop-outter").fadeOut("")
+        });
+    });
+    $(document).ready(function(){
+        $("#search-icon").click(function(){
+            $("#responsivedrop-outter").fadeOut("fast");
+            $("#searchbar-drop").fadeToggle("fast");
+        });
+    });
+
+    function drop(){
+        var x = document.getElementById("dropdown2-1");
+        var y = document.getElementById("dropdown2-2");
+        var z = document.getElementById("dropdown2-3");
+        if (x.style.display === "none") {
+            y.style.display = "none";
+            z.style.display = "none";
+            x.style.display = "block";
+            // document.getElementById("dropbtn1").style.backgroundColor = "#f9f9f9";
+            // document.getElementById("dropbtn2").style.backgroundColor = "white";
+            // document.getElementById("dropbtn3").style.backgroundColor = "white";
+        } else {
+            x.style.display = "none";
+            
+        }
+    }
+
+    function dropTwo(){
+        var x = document.getElementById("dropdown2-1");
+        var y = document.getElementById("dropdown2-2");
+        var z = document.getElementById("dropdown2-3");
+        if (y.style.display === "none") {
+            x.style.display = "none";
+            z.style.display = "none";
+            y.style.display = "block";
+            // document.getElementById("dropbtn2").style.backgroundColor = "#f9f9f9";
+            // document.getElementById("dropbtn1").style.backgroundColor = "white";
+            // document.getElementById("dropbtn3").style.backgroundColor = "white";
+        } else {
+            y.style.display = "none";
+        }
+    }
+
+    function dropThree(){
+        var x = document.getElementById("dropdown2-1");
+        var y = document.getElementById("dropdown2-2");
+        var z = document.getElementById("dropdown2-3");
+        if (z.style.display === "none") {
+            x.style.display = "none";
+            y.style.display = "none";
+            z.style.display = "block";
+            // document.getElementById("dropbtn3").style.backgroundColor = "#f9f9f9";
+            // document.getElementById("dropbtn2").style.backgroundColor = "white";
+            // document.getElementById("dropbtn1").style.backgroundColor = "white";
+        } else {
+            z.style.display = "none";
+        }
+    }
+        
+        function foot(){
+            a = document.getElementById("footerinnercontent1");
+            b = document.getElementById("footerinnercontent2");
+            c = document.getElementById("footerinnercontent3");
+            d = document.getElementById("footerinnercontent4");
+            e = document.getElementById("footerinnercontent5");
+            if (a.style.display === "none"){
+                a.style.display = "block";
+                b.style.display = "none";
+                c.style.display = "none";
+                d.style.display = "none";
+                e.style.display = "none";
+            } else{
+                a.style.display = "none";
+            }
+        }
+        function footTwo(){
+            a = document.getElementById("footerinnercontent1");
+            b = document.getElementById("footerinnercontent2");
+            c = document.getElementById("footerinnercontent3");
+            d = document.getElementById("footerinnercontent4");
+            e = document.getElementById("footerinnercontent5");
+            if (b.style.display === "none"){
+                b.style.display = "block";
+                a.style.display = "none";
+                c.style.display = "none";
+                d.style.display = "none";
+                e.style.display = "none";
+            } else{
+                b.style.display = "none";
+            }
+        }
+        function footThree(){
+            a = document.getElementById("footerinnercontent1");
+            b = document.getElementById("footerinnercontent2");
+            c = document.getElementById("footerinnercontent3");
+            d = document.getElementById("footerinnercontent4");
+            e = document.getElementById("footerinnercontent5");
+            if (c.style.display === "none"){
+                c.style.display = "block";
+                a.style.display = "none";
+                b.style.display = "none";
+                d.style.display = "none";
+                e.style.display = "none";
+            } else{
+                c.style.display = "none";
+            }
+        }
+        function footFour(){
+            a = document.getElementById("footerinnercontent1");
+            b = document.getElementById("footerinnercontent2");
+            c = document.getElementById("footerinnercontent3");
+            d = document.getElementById("footerinnercontent4");
+            e = document.getElementById("footerinnercontent5");
+            if (d.style.display === "none"){
+                d.style.display = "block";
+                a.style.display = "none";
+                b.style.display = "none";
+                c.style.display = "none";
+                e.style.display = "none";
+            } else{
+                d.style.display = "none";
+            }
+        }
+        function footFive(){
+            a = document.getElementById("footerinnercontent1");
+            b = document.getElementById("footerinnercontent2");
+            c = document.getElementById("footerinnercontent3");
+            d = document.getElementById("footerinnercontent4");
+            e = document.getElementById("footerinnercontent5");
+            if (e.style.display === "none"){
+                e.style.display = "block";
+                a.style.display = "none";
+                b.style.display = "none";
+                c.style.display = "none";
+                d.style.display = "none";
+            } else{
+                e.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div id="topnav">
+        <ul>
+            
+            <li style="font-family: poppins;"><a href=""  id="logo"><span style="color: #3ac3d6;">af</span><span style="color: #015b7e;">ren</span></a></li>
+            <div id="navcontent">
+                <li><a href="">Find Talent</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Find Work <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Resources <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Services category <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                        <a href="#">list</a>
+                    </div>
+                </li>
+                <li><a href="">About</a></li>
+                <button id="start-navbut">Get Started</button>
+                <button id="si-innav">Sign in</button>
+            </div>
+
+            <li>
+                <div id="navicon" class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn" style="color: #015b7e;" id="icon" onclick="navic()"><i class="fas fa-bars"></i></a>
+                </div>
+                <div id="responsivedrop-outter">
+                    <div id="responsive-drop" class="dropdown-content-navicon">
+                        <div id="resp-drp-top">
+                            <a href=""  id="resp-logo" style="padding: 0;"><span style="color: whitesmoke;">af</span><span style="color: #3ac3d6;">ren</span></a>
+                            <i class="fa fa-times" id="cancel-nav" aria-hidden="true"></i>
+                        </div>
+                        <a href="#" class="drp-opt">Find talent</a>
+                        <div class="dropdown1" id="dropdown1-1">
+                            <a href="javascript:void(0)" class="dropbtn"  id="dropbtn1" onclick="drop()"><p>Find Work</p> <i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-content2" id="dropdown2-1">
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                            </div>
+                        </div>
+                        <div class="dropdown1" id="dropdown1-1">
+                            <a href="javascript:void(0)" class="dropbtn" id="dropbtn3" onclick="dropThree()"><p>Resources</p><i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-content2" id="dropdown2-3">
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                            </div>
+                        </div>
+                        <div class="dropdown1" id="dropdown1-2">
+                            <a href="javascript:void(0)" class="dropbtn" id="dropbtn2" onclick="dropTwo()"><p>Services category</p><i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-content2" id="dropdown2-2">
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                                <a href="#">list</a>
+                            </div>
+                        </div>
+                        <a href="" class="drp-opt">About</a>
+                        <div id="navbut-drpdiv">
+                            <div class="drp-navbut" ><button id="">Get Started</button></div>
+                            <div class="drp-navbut" ><button>Sign in</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="search" class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn" style="color: #015b7e;" id="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="searchbar-drop">
+                        <div id="searchdrop"><i class="fa fa-search" aria-hidden="true"></i><input type="text" placeholder="search"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <h1>See what our clients are saying</h1>
+        <div class="outer">
+            <div class="card" style="--delay:-1;">
+                <div class="content"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat alias dolor neque ratione commodi praesentium nihil ipsum, recusandae earum sapiente, cum nemo nesciunt sint quis iste dolores suscipit illum tempora?</p></div>
+                <div class="inner-bottom">
+                    <div class="user-prof">
+                        <div class="prof-pic"><img src="images/Briana_Square_Web.jpg.png" alt=""></div>
+                        <div class="details">
+                            <p>Mitchell Bronne1</p>
+                            <p><b>CEO Malistack</b></p>
+                            <p><i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i></p>
+                        </div>
+                    </div>
+                    <div class="client"><small><i class="fa fa-check" aria-hidden="true"></i> verified client</small></div>
+                </div>
+            </div>
+            <div class="card" style="--delay:0;">
+                <div class="content"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat alias dolor neque ratione commodi praesentium nihil ipsum, recusandae earum sapiente, cum nemo nesciunt sint quis iste dolores suscipit illum tempora?</p></div>
+                <div class="inner-bottom">
+                    <div class="user-prof">
+                        <div class="prof-pic"><img src="images/Dick_Square_Web.jpg.png" alt=""></div>
+                        <div class="details">
+                            <p>Mitchell Bronne2</p>
+                            <p><b>CEO Malistack</b></p>
+                            <p><i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i></p>
+                        </div>
+                    </div>
+                    <div class="client"><small><i class="fa fa-check" aria-hidden="true"></i> verified client</small></div>
+                </div>
+            </div>
+            <div class="card" style="--delay:1;">
+                <div class="content"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat alias dolor neque ratione commodi praesentium nihil ipsum, recusandae earum sapiente, cum nemo nesciunt sint quis iste dolores suscipit illum tempora?</p></div>
+                <div class="inner-bottom">
+                    <div class="user-prof">
+                        <div class="prof-pic"><img src="images/JasonW_Square_Web.jpg.png" alt=""></div>
+                        <div class="details">
+                            <p>Mitchell Bronne3</p>
+                            <p><b>CEO Malistack</b></p>
+                            <p><i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i></p>
+                        </div>
+                    </div>
+                    <div class="client"><small><i class="fa fa-check" aria-hidden="true"></i> verified client</small></div>
+                </div>
+            </div>
+            <div class="card" style="--delay:2;">
+                <div class="content"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat alias dolor neque ratione commodi praesentium nihil ipsum, recusandae earum sapiente, cum nemo nesciunt sint quis iste dolores suscipit illum tempora?</p></div>
+                <div class="inner-bottom">
+                    <div class="user-prof">
+                        <div class="prof-pic"><img src="images/Mynul_Square_Web.jpg.png" alt=""></div>
+                        <div class="details">
+                            <p>Mitchell Bronne4</p>
+                            <p><b>CEO Malistack</b></p>
+                            <p><i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i></p>
+                        </div>
+                    </div>
+                    <div class="client"><small><i class="fa fa-check" aria-hidden="true"></i> verified client</small></div>
+                </div>
+            </div>
+            <div class="card" style="--delay:2;">
+                <div class="content"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat alias dolor neque ratione commodi praesentium nihil ipsum, recusandae earum sapiente, cum nemo nesciunt sint quis iste dolores suscipit illum tempora?</p></div>
+                <div class="inner-bottom">
+                    <div class="user-prof">
+                        <div class="prof-pic"><img src="images/NicoleG_Square_Web.jpg.png" alt=""></div>
+                        <div class="details">
+                            <p>Mitchell Bronne5</p>
+                            <p><b>CEO Malistack</b></p>
+                            <p><i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i> <i class="fa fa-star checked"></i></p>
+                        </div>
+                    </div>
+                    <div class="client"><small><i class="fa fa-check" aria-hidden="true"></i> verified client</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div  class="footercontent">
+            <div class="footerhead">
+                <a href=""  id="foot-logo"><span style="color: #3ac3d6;">af</span><span style="color: #015b7e;">ren</span></a>
+            </div>
+            <div class="footerhead">
+                <h3 onclick="footTwo()">For technicians</h3>
+                <div class="footerinnercontent" id="footerinnercontent2">
+                    <p><a href="">Overview</a></p>
+                    <p><a href="">Insurance</a></p>
+                    <p><a href="">Sign up</a></p>
+                </div>
+            </div> 
+            <div class="footerhead">
+                <h3 onclick="footThree()">Resources</h3>
+                <div class="footerinnercontent" id="footerinnercontent3">
+                    <p><a href="">Blog</a></p>
+                    <p><a href="">Stories</a></p>
+                    <p><a href="">Reviews</a></p>
+                    <p><a href="">Platform status</a></p>
+                    <p><a href="">Support</a></p>
+                    <p><a href="">COVID-19 policy</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footercontent">
+            <div class="footerhead">
+                <h3 onclick="footFour()">Other</h3>
+                <div class="footerinnercontent" id="footerinnercontent4">
+                    <p><a href="">Careers</a></p>
+                    <p><a href="">Webinars & events</a></p>
+                    <p><a href="">Our partners</a></p>
+                    <p><a href="">Privacy policy</a></p>
+                    <p><a href="">Non-descrimiatio policy</a></p>
+                </div>
+            </div>
+            <div class="footerhead">
+                <h3 onclick="footFive()">Connect with us</h3>
+                <div class="footerinnercontent" id="footerinnercontent5">
+                    <p><a href="">+1 233-577-4855</a></p>
+                    <p><a href="">733 Marquette Avenue S</a></p>
+                    <p><a href="">Suite #800</a></p>
+                    <p><a href="">Minneapolis, MN 55402</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="copy">
+        <p style="margin: 0;">&copy;2023 Afren &nbsp;LLC. All Rights Reserved.&nbsp;|&nbsp;Terms of Service </p>
+    </div> 
+</body>
+</html>

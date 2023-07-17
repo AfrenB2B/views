@@ -1,0 +1,402 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white-text-color: #FAFAFA;
+    --white-bckg-color: #F7FAFE;
+
+    --grey-inactive1: #D9D9D9;
+    --grey-inactive2: #7F7F7F;
+
+    --black: #000000;
+
+    --blue1: #3AC3D6;
+    --blue2: #015B7E;
+
+}
+
+body{
+    text-rendering: optimizeSpeed;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    /* height: 100%; */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/********** nav-bar **********/
+#topnav{
+    box-shadow: 0px 3px 5px rgba(175, 174, 174, 0.151);
+    /* padding-top: 0.5%; */
+    /* padding-bottom: 0.5%; */
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 0.5%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+}
+#navicon{
+    display: none;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    /* height: 80px; */
+    color: black;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    /* padding-left: 2%; */
+    /* padding-right: 2%; */
+}
+li{
+    float: left;
+    color: black;
+}
+#logo{
+    padding-top: 0;
+}
+span{
+    font-size: xx-large;
+    margin-top: 0;
+}
+
+li a, .dropbtn{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.dropdown{
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    max-width: 500px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* z-index: 1; */
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover{
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+#navbuttondiv{
+    float: right;
+    margin-right: 3%;
+    width: 10%;
+    padding-top: 0.5%;
+}
+#navbuttondiv button{
+    height: 35px;
+    width: 100%;
+    color: white;
+    background-color: #015b7e;
+    border-radius: 5px;
+    border-style: none;
+}
+#navbuttondiv button:hover{
+    background-color: #166381;
+    cursor: pointer;
+}
+
+/********** nav-bar-end **********/
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.step-number {
+    font-size: 1.1rem;
+    color: var(--blue2);
+    margin-bottom: 30px;
+}
+
+main h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+main .description {
+    margin: 0 auto 35px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* background-color: greenyellow; */
+    width: 43%;
+    margin-bottom: 5px;
+}
+
+form label {
+    margin: 0 auto 15px auto;
+}
+
+form input {
+    display: block;
+    min-width: 320px;
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-inactive2);
+    outline: 1px solid var(--grey-inactive2);
+}
+
+form p {
+    margin: 20px 0;
+    color: var(--blue2);
+}
+
+.skills {
+    width: 100%;
+}
+
+.skills section {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 43%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.skills section .select {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.select .skill {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    padding: 0 10px;
+    height: 35px;
+    border-radius: 35px;
+}
+.skill p {
+    font-size: .9rem;
+}
+
+.s1 {
+    margin-bottom: 20px;
+}
+
+.s1 .skill {
+    background-color: var(--blue2);
+    color: var(--white-text-color);
+}
+
+.s2 .skill {
+    background-color: var(--grey-inactive1);
+    color: var(--blue2);
+}
+
+.step2-btn {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin: 60px 0 50px 0;
+    flex-wrap: wrap;
+}
+
+.step2-btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 40px;
+    width: 21%;
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.step2-btn a:nth-of-type(1) {
+    color: #575757;
+    background-color: #d1d1d1;
+}
+.step2-btn a:nth-of-type(2) {
+    color: var(--white-text-color);
+    background-color: var(--blue2);
+}
+
+
+
+/********** nav-bar-media-query **********/
+@media (max-width: 760px){
+    #topnav{
+        padding-left: 0.3%;
+        padding-right: 0.3%;
+    }
+}
+@media (max-width: 724px){
+    #navicon{
+        display: block;
+    }
+    #navcontent{
+        display: none;
+    }
+    #logo{
+        position: absolute;
+        left: 40%;
+    }
+    #navbuttondiv{
+        width: 15%;
+    }
+    .dropdown-content2{
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        max-width: 500px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        left: 100%;
+        /* z-index: 1; */
+    }
+    .dropdown1:hover .dropdown-content2{
+        display: block;
+    }
+}
+@media (max-width: 540px){
+    #navbuttondiv{
+        width: 20%;
+    }
+    #logo{
+        left: 37%;
+    }
+}
+@media (max-width: 456px){
+    #navbuttondiv{
+        width: 24%;
+        padding-top: 1%;
+    }
+    #logo{
+        left: 33%;
+    }
+}
+@media (max-width: 384px){
+    #navbuttondiv{
+        width: 25%;
+    }
+    #logo{
+        left: 30%;
+    }
+}
+@media (max-width: 334px){
+    #navbuttondiv{
+        width: 27%;
+    }
+    #logo{
+        left: 28%;
+    }
+}
+@media (max-width: 296px){
+    #navbuttondiv{
+        width: 29%;
+    }
+    #logo{
+        left: 26%;
+    }
+}
+@media (max-width: 282px){
+    #navbuttondiv{
+        width: 31%;
+    }
+    #logo{
+        left: 24%;
+    }
+}
+/********** nav-bar-media-query-end **********/
+
+@media (max-width: 1000px){
+    /* body {
+        background-color: red;
+    } */
+    form {
+        width: 70%;
+    }
+    .skills section {
+        width: 70%;
+    }
+}
+@media (max-width: 900px){
+    /* body {
+        background-color: yellow;
+    } */
+
+}
+@media (max-width: 800px){
+    /* body {
+        background-color: blue;
+    } */
+    form {
+        width: 80%;
+    }
+    .skills section {
+        width: 80%;
+    }
+}
+@media (max-width: 500px){
+    /* body {
+        background-color: greenyellow;
+    } */
+    form {
+        width: 90%;
+    }
+    .skills section {
+        width: 90%;
+    }
+}
+@media (max-width: 430px){
+    .step2-btn a:nth-of-type(1) {
+        order: 2;
+    }
+    .step2-btn a:nth-of-type(2) {
+        order: 1;
+    }
+}
+@media (max-width: 400px){
+    /* body {
+        background-color: brown;
+    } */
+    form {
+        width: 100%;
+    }
+    .skills section {
+        width: 100%;
+    }
+}
